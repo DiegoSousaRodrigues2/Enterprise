@@ -1,6 +1,7 @@
 package br.com.fiap.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -23,30 +24,22 @@ public class OrderAccount {
 	private Status status;
 
 	@Column(name = "date_created", nullable = false) // Esse valor será fixo para evidenciar quando foi criado
-	private LocalDate dateCreated;
+	private LocalDateTime dateCreated;
 
 	@Column(name = "last_update", nullable = false) // Esse será atualizado toda vez que for atualizado
-	private LocalDate lastUpdate;
+	private LocalDateTime lastUpdate;
 
 	public OrderAccount() {
 
 	}
 
-	public OrderAccount(Integer accountId, Integer skuId, Status status, LocalDate dateCreated,
-			LocalDate lastUpdate) {
+	public OrderAccount(Integer accountId, Integer skuId, Status status, LocalDateTime dateCreated,
+			LocalDateTime lastUpdate) {
 		super();
 		this.accountId = accountId;
 		this.skuId = skuId;
 		this.status = status;
 		this.dateCreated = dateCreated;
-		this.lastUpdate = lastUpdate;
-	}
-
-	public OrderAccount(Integer accountId, Integer skuId, Status status, LocalDate lastUpdate) {
-		super();
-		this.accountId = accountId;
-		this.skuId = skuId;
-		this.status = status;
 		this.lastUpdate = lastUpdate;
 	}
 
@@ -82,19 +75,19 @@ public class OrderAccount {
 		this.status = status;
 	}
 
-	public LocalDate getDateCreated() {
+	public LocalDateTime getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(LocalDate dateCreated) {
+	public void setDateCreated(LocalDateTime dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public LocalDate getLastUpdate() {
+	public LocalDateTime getLastUpdate() {
 		return lastUpdate;
 	}
 
-	public void setLastUpdate(LocalDate lastUpdate) {
+	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
 
