@@ -14,7 +14,7 @@ public class OrderLog {
 	private Integer id;
 
 	@Column(name = "order_log", nullable = false) // para qual status foi alterado
-	private Integer orderLog;
+	private Status orderLog;
 
 	private String comentario;
 
@@ -28,7 +28,7 @@ public class OrderLog {
 
 	}
 
-	public OrderLog(Integer orderLog, String comentario, LocalDateTime dateCreated, LocalDateTime lastUpdate) {
+	public OrderLog(Status orderLog, String comentario, LocalDateTime dateCreated, LocalDateTime lastUpdate) {
 		super();
 		this.orderLog = orderLog;
 		this.comentario = comentario;
@@ -44,11 +44,11 @@ public class OrderLog {
 		this.id = id;
 	}
 
-	public Integer getOrderLog() {
+	public Status getOrderLog() {
 		return orderLog;
 	}
 
-	public void setOrderLog(Integer orderLog) {
+	public void setOrderLog(Status orderLog) {
 		this.orderLog = orderLog;
 	}
 

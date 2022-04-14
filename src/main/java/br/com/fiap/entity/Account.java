@@ -41,14 +41,6 @@ public class Account {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public Account(String name, Integer postalCodeId, String document, LocalDateTime lastUpdate) {
-		super();
-		this.name = name;
-		this.postalCodeId = postalCodeId;
-		this.document = document;
-		this.lastUpdate = lastUpdate;
-	}
-
 	public Integer getId() {
 		return id;
 	}

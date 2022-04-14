@@ -26,12 +26,15 @@ public class PostalCodeCRUD {
 			dao.create(postalCode);
 			dao.commit();
 
-			dao.read(1);
-
-			dao.update(new PostalCode(postalCode.getZipCode(), "rua b", postalCode.getDateCreated(), LocalDateTime.now()));
+			dao.read(postalCode.getId());
+			
+			postalCode.setAddress("Rua B");
+			postalCode.setLastUpdate(LocalDateTime.now());
+			
+			dao.update(postalCode);
 			dao.commit();
 
-			dao.delete(1);
+			dao.delete(postalCode.getId());
 			dao.commit();
 		} catch (CommitException e) {
 			e.printStackTrace();

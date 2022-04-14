@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 
 import br.com.fiap.dao.GenericDao;
 import br.com.fiap.dao.impl.GenericDaoImpl;
-import br.com.fiap.entity.OrderAccount;
+import br.com.fiap.entity.OrderLog;
 import br.com.fiap.entity.Status;
 import br.com.fiap.exception.CommitException;
 import br.com.fiap.exception.IdNotFoundException;
@@ -18,28 +18,31 @@ public class OrderLogCRUD {
 		EntityManagerFactory fabrica = EntityManagerFactorySingleton.getInstance();
 		EntityManager em = fabrica.createEntityManager();
 
-		GenericDao<OrderAccount, Integer> dao = new GenericDaoImpl<OrderAccount, Integer>(em) {
+		GenericDao<OrderLog, Integer> dao = new GenericDaoImpl<OrderLog, Integer>(em) {
 		};
 
-		OrderAccount orderAccount = new OrderAccount(1,15, Status.SH, LocalDateTime.now(), LocalDateTime.now());
+		OrderLog orderLog = new OrderLog(Status.PA,"Pagamento aprovado",LocalDateTime.now(), LocalDateTime.now());
 
 		try {
-			dao.create(orderAccount);
+			dao.create(orderLog);
 			dao.commit();
 
-			dao.read(1);
+			dao.read(orderLog.getId());
 
-			dao.update(new OrderAccount(orderAccount.getAccountId(), orderAccount.getSkuId(), Status.PA, orderAccount.getDateCreated(), LocalDateTime.now()));
+			orderLog.setComentario("Finalizado");
+			orderLog.setOrderLog(Status.CO);
+			orderLog.setLastUpdate(LocalDateTime.now());
+			
+			dao.update(orderLog);
 			dao.commit();
 
-			dao.delete(1);
+			dao.delete(orderLog.getId());
 			dao.commit();
 		} catch (CommitException e) {
 			e.printStackTrace();
 		} catch (IdNotFoundException e) {
 			e.printStackTrace();
 		}
-
 		finally {
 			em.close();
 			fabrica.close();

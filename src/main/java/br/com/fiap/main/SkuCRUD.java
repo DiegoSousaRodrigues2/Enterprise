@@ -1,15 +1,11 @@
 package br.com.fiap.main;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import br.com.fiap.dao.GenericDao;
 import br.com.fiap.dao.impl.GenericDaoImpl;
-import br.com.fiap.entity.OrderAccount;
 import br.com.fiap.entity.Sku;
-import br.com.fiap.entity.Status;
 import br.com.fiap.exception.CommitException;
 import br.com.fiap.exception.IdNotFoundException;
 import br.com.fiap.singleton.EntityManagerFactorySingleton;
@@ -22,18 +18,21 @@ public class SkuCRUD {
 		GenericDao<Sku, Integer> dao = new GenericDaoImpl<Sku, Integer>(em) {
 		};
 
-		OrderAccount orderAccount = new OrderAccount(1,15, Status.SH, LocalDateTime.now(), LocalDateTime.now());
+		Sku sku = new Sku("churros", 10.90, LocalDateTime.now(), LocalDateTime.now());
 
 		try {
-			dao.create(orderAccount);
+			dao.create(sku);
 			dao.commit();
 
-			dao.read(1);
+			dao.read(sku.getId());
 
-			dao.update(new OrderAccount(orderAccount.getAccountId(), orderAccount.getSkuId(), Status.PA, orderAccount.getDateCreated(), LocalDateTime.now()));
+			sku.setPrice(15.00);
+			sku.setLastUpdate(LocalDateTime.now());
+
+			dao.update(sku);
 			dao.commit();
 
-			dao.delete(1);
+			dao.delete(sku.getId());
 			dao.commit();
 		} catch (CommitException e) {
 			e.printStackTrace();

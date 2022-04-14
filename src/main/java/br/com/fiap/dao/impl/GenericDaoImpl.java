@@ -11,7 +11,7 @@ public abstract class GenericDaoImpl<T, K> implements GenericDao<T, K> {
 
 	private EntityManager em;
 
-	private Class<T> clazz;// armazena o .class da entidade
+	private Class<T> clazz;
 
 	@SuppressWarnings("all")
 	public GenericDaoImpl(EntityManager em) {

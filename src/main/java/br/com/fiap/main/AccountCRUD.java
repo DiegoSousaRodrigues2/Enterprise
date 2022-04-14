@@ -19,17 +19,20 @@ public class AccountCRUD {
 		};
 
 		Account account = new Account("Diego", 16, "176.571.330-74", LocalDateTime.now(), LocalDateTime.now());
-
+		
 		try {
 			dao.create(account);
 			dao.commit();
 
-			dao.read(1);
-
-			dao.update(new Account("Felipe", 16, "10", account.getDateCreated(), LocalDateTime.now()));
+			dao.read(account.getId());
+						
+			account.setName("amauri");
+			account.setLastUpdate(LocalDateTime.now());
+			
+			dao.update(account);
 			dao.commit();
 
-			dao.delete(1);
+			dao.delete(account.getId());
 			dao.commit();
 		} catch (CommitException e) {
 			e.printStackTrace();
