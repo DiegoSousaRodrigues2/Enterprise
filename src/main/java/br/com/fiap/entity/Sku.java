@@ -1,6 +1,6 @@
 package br.com.fiap.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 
 @Entity
@@ -19,27 +19,20 @@ public class Sku {
 	private Double price;
 
 	@Column(name = "date_created", nullable = false) // Esse valor será fixo para evidenciar quando foi criado
-	private LocalDate dateCreated;
+	private LocalDateTime dateCreated;
 
 	@Column(name = "last_update", nullable = false) // Esse será atualizado toda vez que for atualizado
-	private LocalDate lastUpdate;
+	private LocalDateTime lastUpdate;
 
 	public Sku() {
 
 	}
 
-	public Sku(String name, Double price, LocalDate dateCreated, LocalDate lastUpdate) {
+	public Sku(String name, Double price, LocalDateTime dateCreated, LocalDateTime lastUpdate) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.dateCreated = dateCreated;
-		this.lastUpdate = lastUpdate;
-	}
-	
-	public Sku(String name, Double price, LocalDate lastUpdate) {
-		super();
-		this.name = name;
-		this.price = price;
 		this.lastUpdate = lastUpdate;
 	}
 
@@ -67,19 +60,19 @@ public class Sku {
 		this.price = price;
 	}
 
-	public LocalDate getDateCreated() {
+	public LocalDateTime getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(LocalDate dateCreated) {
+	public void setDateCreated(LocalDateTime dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public LocalDate getLastUpdate() {
+	public LocalDateTime getLastUpdate() {
 		return lastUpdate;
 	}
 
-	public void setLastUpdate(LocalDate lastUpdate) {
+	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
 
